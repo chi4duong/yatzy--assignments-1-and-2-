@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yatzy — Design Mockups (HTML/CSS only)</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+  <main class="app" role="main">
+    <!-- Header -->
+    <header class="app_header">
+      <h1 class="app_title">Yatzy</h1>
+      <p class="app_subtitle">HTML/CSS mockups only — layout, colors, fonts, dice visuals, and scorecard.</p>
+    </header>
+    <!-- Left column: dice area and control buttons (visual only) -->
+     <section class="board" aria-labelledby="board-title">
+    <!-- Section heading used as the visible title -->
+    <h2 id="board-title" class="section-title">Dice Board</h2>
+
+     <!-- Control row: buttons are disabled since this is a design mockup -->
+      <div class="controls">
+        <button class="btn btn--primary" aria-disabled="true" disabled>Roll Dice</button>
+        <button class="btn btn--ghost" aria-disabled="true" disabled>Reset Turn</button>
+        <button class="btn btn--accent" aria-disabled="true" disabled>Score Selection</button>
+        <span class="hint" role="note">(Design mockup — controls are non-functional)</span>
+      </div>
+
+      <!-- Dice tray showing five dice; each die face is controlled purely by CSS classes -->
+      <div class="dice-tray" role="group" aria-labelledby="dice-group-title">
+        <!-- Hidden text node to name this group for non-visual tools -->
+        <span id="dice-group-title" class="visually-hidden">Dice</span>
+
+
+        <!--
+          A die is a 3×3 CSS Grid. There are nine "pip" spans positioned at fixed grid cells.
+          The face class (face-1..face-6) toggles which pips are visible to draw the correct pattern.
+          The small "Hold" badge suggests the future lock/hold affordance.
+        -->
+        <div class="die face-1" role="button" aria-pressed="false" aria-disabled="true" tabindex="-1" aria-label="Die showing 1">
+          <span class="pip p-1"></span><span class="pip p-2"></span><span class="pip p-3"></span>
+          <span class="pip p-4"></span><span class="pip p-5"></span><span class="pip p-6"></span>
+          <span class="pip p-7"></span><span class="pip p-8"></span><span class="pip p-9"></span>
+          <span class="hold-toggle">Hold</span>
+        </div>
+
+        <div class="die face-2" role="button" aria-pressed="false" aria-disabled="true" tabindex="-1" aria-label="Die showing 2">
+          <span class="pip p-1"></span><span class="pip p-2"></span><span class="pip p-3"></span>
+          <span class="pip p-4"></span><span class="pip p-5"></span><span class="pip p-6"></span>
+          <span class="pip p-7"></span><span class="pip p-8"></span><span class="pip p-9"></span>
+          <span class="hold-toggle">Hold</span>
+        </div>
+
+        <div class="die face-3" role="button" aria-pressed="true" aria-disabled="true" tabindex="-1" aria-label="Die showing 3 (held)">
+          <span class="pip p-1"></span><span class="pip p-2"></span><span class="pip p-3"></span>
+          <span class="pip p-4"></span><span class="pip p-5"></span><span class="pip p-6"></span>
+          <span class="pip p-7"></span><span class="pip p-8"></span><span class="pip p-9"></span>
+          <span class="hold-toggle">Held</span>
+        </div>
+
+        <div class="die face-4" role="button" aria-pressed="false" aria-disabled="true" tabindex="-1" aria-label="Die showing 4">
+          <span class="pip p-1"></span><span class="pip p-2"></span><span class="pip p-3"></span>
+          <span class="pip p-4"></span><span class="pip p-5"></span><span class="pip p-6"></span>
+          <span class="pip p-7"></span><span class="pip p-8"></span><span class="pip p-9"></span>
+          <span class="hold-toggle">Hold</span>
+        </div>
+
+        <div class="die face-6" role="button" aria-pressed="false" aria-disabled="true" tabindex="-1" aria-label="Die showing 6">
+          <span class="pip p-1"></span><span class="pip p-2"></span><span class="pip p-3"></span>
+          <span class="pip p-4"></span><span class="pip p-5"></span><span class="pip p-6"></span>
+          <span class="pip p-7"></span><span class="pip p-8"></span><span class="pip p-9"></span>
+          <span class="hold-toggle">Hold</span>
+        </div>
+      </div>
+
+      <!-- Small helper line indicating the current scope of the mockup -->
+      <p class="hint">Holding/clicking will be added later (not part of the design-only scope).</p>
+    </section>
+
+    <!-- Right column: scorecard table styled as a card -->
+    <aside class="scorecard" aria-labelledby="scorecard-title">
+      <div class="scorecard__header">
+        <h2 id="scorecard-title" class="scorecard__title">Scorecard (Design Preview)</h2>
+        <p class="hint">Visual layout for categories and points (placeholders).</p>
+      </div>
+
+
+      <!-- Table uses semantic elements; captions and headers help structure -->
+      <table aria-describedby="scorecard-desc">
+        <caption id="scorecard-desc" class="visually-hidden">Yatzy score categories and placeholder points.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col" class="pts">Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Upper section -->
+          <tr><td class="cat">Ones</td><td class="hint">Sum of all 1s</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Twos</td><td class="hint">Sum of all 2s</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Threes</td><td class="hint">Sum of all 3s</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Fours</td><td class="hint">Sum of all 4s</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Fives</td><td class="hint">Sum of all 5s</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Sixes</td><td class="hint">Sum of all 6s</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Upper Bonus</td><td class="hint">+35 if upper ≥ 63</td><td class="pts">—</td></tr>
+
+          <!-- Lower section -->
+          <tr><td class="cat">Three of a Kind</td><td class="hint">Sum of all dice</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Four of a Kind</td><td class="hint">Sum of all dice</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Full House</td><td class="hint">25 points</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Small Straight</td><td class="hint">30 points</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Large Straight</td><td class="hint">40 points</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Chance</td><td class="hint">Sum of all dice</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Yatzy</td><td class="hint">50 points</td><td class="pts">—</td></tr>
+          <tr><td class="cat">Total</td><td class="hint">Upper + Lower</td><td class="pts">—</td></tr>
+        </tbody>
+      </table>
+    </aside>
+
+    <!-- Footer card for lab notes/checklist -->
+    <section class="notes" aria-label="Documentation notes">
+      <strong>Design scope:</strong>
+      <ul>
+        <li>Color tokens & fonts are in CSS variables.</li>
+        <li>Dice are CSS-only (no images) using a 3×3 grid and face classes.</li>
+        <li>Buttons are disabled to indicate this is a mockup.</li>
+      </ul>
+    </section>
+
+
+    
+
+    </main>
+    </body>
+
+
+</html>

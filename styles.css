@@ -1,0 +1,227 @@
+
+:root{
+  --color-primary:#1E3A8A;   /* Brand accent for headings and key UI */
+  --color-secondary:#F59E0B; /* Secondary highlight, e.g., outlines/badges */
+  --color-accent:#10B981;    /* Action/confirm accent */
+  --color-bg:#F8FAFC;        /* Page background */
+  --color-surface:#FFFFFF;   /* Card/background surfaces */
+  --color-text:#111827;      /* Primary text */
+  --color-muted:#6B7280;     /* Secondary text */
+
+  --radius:16px;             /* Global rounding scale */
+  --shadow:0 10px 20px rgba(17,24,39,0.08), 0 2px 6px rgba(17,24,39,0.06); /* Soft depth */
+}
+
+/* Predictable sizing across components */
+*{ box-sizing:border-box }
+html,body{ height:100% }
+
+/* Base page styling with subtle radial accents */
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color:var(--color-text);
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(30,58,138,.08), transparent 40%),
+    radial-gradient(1200px 600px at -20% 100%, rgba(16,185,129,.08), transparent 40%),
+    var(--color-bg);
+  line-height:1.5;
+}
+
+/* Utility: hides content visually but keeps it in the accessibility tree */
+.visually-hidden{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0);
+  white-space:nowrap; border:0;
+}
+
+/* Page layout */
+/* Two-column grid on larger screens; collapses to one column responsively */
+.app{
+  max-width:1200px;
+  margin:48px auto;
+  padding:0 24px 64px;
+  display:grid;
+  grid-template-columns: 1.1fr .9fr; /* board : scorecard */
+  gap:24px;
+}
+
+/* Top banner card with soft gradient and shadow */
+.app_header{
+  grid-column:1 / -1;
+  background:linear-gradient(180deg, #ffffff, #f3f6fb);
+  border:1px solid #e5e7eb;
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+.app_title{
+  font-family:Poppins, system-ui, sans-serif;
+  font-weight:700;
+  letter-spacing:0.2px;
+  font-size: clamp(24px, 2.2vw, 36px);
+  margin:0 0 4px;
+  color:var(--color-primary);
+}
+.app_subtitle{
+  margin:0;
+  color:var(--color-muted);
+  font-size:14px;
+}
+
+/* Section headings for major blocks */
+.section-title{
+  font-family:Poppins, system-ui, sans-serif;
+  margin:4px 0 8px;
+  font-size:18px;
+  color:var(--color-primary);
+}
+
+/* Left column card: dice area */
+.board{
+  background:var(--color-surface);
+  border:1px solid #e5e7eb;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* Control buttons row */
+.controls{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  appearance:none;
+  border:0;
+  border-radius:14px;
+  padding:12px 16px;
+  font-weight:600;
+  cursor:not-allowed; /* explicitly non-interactive in the mockup */
+  opacity:.9;
+  box-shadow:0 2px 0 rgba(0,0,0,.06);
+  transition:transform .06s ease;
+}
+.btn:active{ transform: translateY(1px); }
+.btn--primary{ background:var(--color-primary); color:#fff; }
+.btn--ghost{ background:#EEF2FF; color:var(--color-primary); }
+.btn--accent{ background:var(--color-accent); color:#032b1f; }
+
+.hint{ color:var(--color-muted); font-size:12px; }
+
+/* Dice grid: five fixed-size cells align neatly in a row (wraps on small screens) */
+.dice-tray{
+  display:grid;
+  grid-template-columns: repeat(5, 96px);
+  gap:14px;
+  justify-content:flex-start;
+}
+
+/* A die uses a 3×3 grid; pips occupy fixed grid cells to form faces 1–6 */
+.die{
+  width:96px; height:96px;
+  background:#fff;
+  border-radius:20px;
+  border:2px solid #e5e7eb;
+  box-shadow:0 8px 18px rgba(0,0,0,.06) inset, var(--shadow);
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding:12px;
+  position:relative;
+  cursor:not-allowed; /* visual hint only */
+  opacity:0.98;
+}
+
+/* Optional visual state for a “held” die when add behavior later */
+.die[aria-pressed="true"]{
+  outline:3px solid var(--color-secondary);
+  outline-offset:2px;
+}
+
+/* Pip visuals: small dark circles centered in their grid cell */
+.pip{
+  width:16px; height:16px;
+  border-radius:50%;
+  background: radial-gradient(circle at 35% 35%, #444, #000);
+  place-self:center;
+  opacity:.95;
+}
+
+/* Grid cell positions (p-1..p-9 map to the 3×3) */
+.p-1{ grid-area:1/1; } .p-2{ grid-area:1/2; } .p-3{ grid-area:1/3; }
+.p-4{ grid-area:2/1; } .p-5{ grid-area:2/2; } .p-6{ grid-area:2/3; }
+.p-7{ grid-area:3/1; } .p-8{ grid-area:3/2; } .p-9{ grid-area:3/3; }
+
+/* Hide all pips by default; show specific cells per face below */
+.die .pip{ display:none; }
+
+/* Face mappings: reveal the correct pip positions for each die face */
+.face-1 .p-5,
+.face-2 .p-1, .face-2 .p-9,
+.face-3 .p-1, .face-3 .p-5, .face-3 .p-9,
+.face-4 .p-1, .face-4 .p-3, .face-4 .p-7, .face-4 .p-9,
+.face-5 .p-1, .face-5 .p-3, .face-5 .p-5, .face-5 .p-7, .face-5 .p-9,
+.face-6 .p-1, .face-6 .p-3, .face-6 .p-4, .face-6 .p-6, .face-6 .p-7, .face-6 .p-9 { display:block; }
+
+/* Small corner badge to suggest “hold” functionality visually */
+.hold-toggle{
+  position:absolute; inset:auto 8px 8px 8px;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(245,158,11,.12); color:#7c4a02;
+  border:1px dashed rgba(245,158,11,.5);
+  font-size:12px; font-weight:600; letter-spacing:.2px;
+  border-radius:12px; padding:6px 8px;
+}
+
+/* Right column card: score table */
+.scorecard{
+  background:var(--color-surface);
+  border:1px solid #e5e7eb;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.scorecard__header{
+  padding:16px 18px;
+  background:linear-gradient(180deg, rgba(30,58,138,.08), transparent);
+  border-bottom:1px solid #e5e7eb;
+}
+.scorecard__title{
+  font-family:Poppins, system-ui, sans-serif;
+  margin:0; font-size:18px; color:var(--color-primary);
+}
+
+/* Table styling: clear hierarchy, hover highlight, numeric alignment */
+table{ width:100%; border-collapse:collapse; font-size:14px; }
+thead th{ text-align:left; font-weight:600; color:var(--color-muted); padding:10px 14px; }
+tbody td{ padding:10px 14px; border-top:1px dashed #e5e7eb; }
+tbody tr:hover{ background:#F9FAFB; }
+.cat{ font-weight:600; }
+.pts{ text-align:right; font-variant-numeric: tabular-nums; }
+
+/* Footer notes card for lab checklist or documentation hooks */
+.notes{
+  grid-column:1 / -1;
+  background:#fff; border:1px solid #e5e7eb; border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:18px; color:#374151; font-size:14px;
+}
+
+/* Responsive */
+/* Collapse to one column on tablets; keep dice in a smaller grid */
+@media (max-width: 980px){
+  .app{ grid-template-columns: 1fr; }
+  .dice-tray{ grid-template-columns: repeat(3, 96px); }
+}
+/* On phones, reduce die size and use two columns */
+@media (max-width: 600px){
+  .dice-tray{ grid-template-columns: repeat(2, 88px); }
+  .die{ width:88px; height:88px; }
+}
