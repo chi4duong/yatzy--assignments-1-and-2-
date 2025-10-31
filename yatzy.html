@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yatzy — Design Mockups (HTML/CSS only)</title>
+  <title>Yatzy</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,14 +14,14 @@
     <!-- Header -->
     <header class="app_header">
       <h1 class="app_title">Yatzy</h1>
-      <p class="app_subtitle">HTML/CSS mockups only — layout, colors, fonts, dice visuals, and scorecard.</p>
+      <p class="app_subtitle"></p>
     </header>
     <!-- Left column: dice area and control buttons (visual only) -->
      <section class="board" aria-labelledby="board-title">
+
     <!-- Section heading used as the visible title -->
     <h2 id="board-title" class="section-title">Dice Board</h2>
 
-     <!-- Control row: buttons are disabled since this is a design mockup -->
       <div class="controls">
         <button class="btn btn--primary" aria-disabled="true" disabled>Roll Dice</button>
         <button class="btn btn--ghost" aria-disabled="true" disabled>Reset Turn</button>
@@ -35,11 +35,6 @@
         <span id="dice-group-title" class="visually-hidden">Dice</span>
 
 
-        <!--
-          A die is a 3×3 CSS Grid. There are nine "pip" spans positioned at fixed grid cells.
-          The face class (face-1..face-6) toggles which pips are visible to draw the correct pattern.
-          The small "Hold" badge suggests the future lock/hold affordance.
-        -->
         <div class="die face-1" role="button" aria-pressed="false" aria-disabled="true" tabindex="-1" aria-label="Die showing 1">
           <span class="pip p-1"></span><span class="pip p-2"></span><span class="pip p-3"></span>
           <span class="pip p-4"></span><span class="pip p-5"></span><span class="pip p-6"></span>
@@ -76,15 +71,13 @@
         </div>
       </div>
 
-      <!-- Small helper line indicating the current scope of the mockup -->
-      <p class="hint">Holding/clicking will be added later (not part of the design-only scope).</p>
     </section>
 
     <!-- Right column: scorecard table styled as a card -->
     <aside class="scorecard" aria-labelledby="scorecard-title">
       <div class="scorecard__header">
-        <h2 id="scorecard-title" class="scorecard__title">Scorecard (Design Preview)</h2>
-        <p class="hint">Visual layout for categories and points (placeholders).</p>
+        <h2 id="scorecard-title" class="scorecard__title">Scorecard</h2>
+        
       </div>
 
 
@@ -121,20 +114,14 @@
       </table>
     </aside>
 
-    <!-- Footer card for lab notes/checklist -->
-    <section class="notes" aria-label="Documentation notes">
-      <strong>Design scope:</strong>
-      <ul>
-        <li>Color tokens & fonts are in CSS variables.</li>
-        <li>Dice are CSS-only (no images) using a 3×3 grid and face classes.</li>
-        <li>Buttons are disabled to indicate this is a mockup.</li>
-      </ul>
-    </section>
+
 
 
     
 
     </main>
+    <script type="module" src="./app.js"></script>
+
     </body>
 
 

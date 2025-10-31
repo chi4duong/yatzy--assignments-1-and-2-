@@ -47,10 +47,11 @@ export class DiceSet{
         return this.values();
     }
 
-    resetTurn(){
-        this.dice.forEach(d => (d.held = false));
-        this.count.rollsThisTurn = 0;
-    }
+   resetTurn(){
+  this.dice.forEach(d => (d.held = false));
+  this.rollsThisTurn = 0;         
+}
+ 
 
     /** @returns {number[]} current values snapshot */
     values() {return this.dice.map(d => d.value);}
