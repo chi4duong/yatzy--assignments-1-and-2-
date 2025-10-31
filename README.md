@@ -1,4 +1,4 @@
-#  Yatzy — JavaScript Dice Game
+#  Yatzy —  Dice Game  Assignment 1
 
 **Scope:** Full implementation using HTML, CSS, and JavaScript ES Modules.
 
