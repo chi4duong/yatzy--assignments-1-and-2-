@@ -1,0 +1,25 @@
+{
+  "name": "yatzy--assignments-1-and-2-",
+  "version": "1.0.0",
+  "description": "Full implementation using HTML, CSS, and JavaScript ES Modules.",
+  "type": "module",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chi4duong/yatzy--assignments-1-and-2-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chi4duong/yatzy--assignments-1-and-2-/issues"
+  },
+  "homepage": "https://github.com/chi4duong/yatzy--assignments-1-and-2-#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
